@@ -1,0 +1,79 @@
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="Getting started / Package Development / App Structure" />
+
+# 1) Application Structure
+
+The application folder is broken into the following folders
+
+-   components
+-   graphql
+-   helpers
+-   types
+
+**Generally, you can ignore the graphql and types folders as these are rarely touched.**
+
+> You can use the _auto generated_ 'graphql/generated.ts' file for importing certain schema typings throught the application (like input types, and enums).
+
+## Components structure
+
+Each component has the following folders structure (depending on what is scaffolded)
+
+```
+__stories__/
+    FooBar.stories.tsx
+__tests__/
+    FooBar.test.tsx
+components/
+    FooBar.styled.tsx
+    FooBar.tsx
+graphql/
+    /fragments
+        example.graphql
+    /mutations
+        example.graphql
+    /queries
+        example.graphql
+```
+
+### components
+
+The component folder will hold all the components and sub components.
+The .styled files are reserved for styling. We use [Styled Components](https://styled-components.com/) to add styling for our components.
+
+> Keep the naming of the styled files consistent with the name of the components / sub components.
+
+### graphql
+
+The graphql folder holds all the queries, fragments and mutations that are related to the component.
+Try to use fragments to generate the props for components that map to API requests. _Granularity is the key here._
+After the GraphQL queries, mutations or fragment files have been created, you can auto generated the typings by running:
+
+```
+> npm run codegen
+```
+
+This will build a _.generated.ts_ file next to each of the _.graphql_ files.
+The auto generated query and mutations will come with Apollo Client 'use' hooks, that can use used to execute the GraphQL query or mutation.
+[Read more about this here](https://www.apollographql.com/docs/react/data/queries/).
+
+> Apollo Client is a peer dependency for this package, and its configurations (i.e. authentication, api url) is handled by the parent application.
+
+### Some Best practices
+
+-   Use the generated GraphQL fragments for prop types where relevant.
+-   The more granular the GraphQL fragment the more useful it is as props for components.
+-   Only request what is needed in the GraphQL
+-   Namespace the fragments with the package name (as these must be unique throughout the app)
+
+### **tests**
+
+We use Jest and React Testing Library for our tests.
+We also have a mocked Apollo Server that returns random data to ensure easier testing.
+The data for specific schema types can be hijacked via the 'mockTypes' argument for the test renderer.
+For more global mocked types, these can be added directly into testHelpers/apolloClient.tsx.
+
+### **stories**
+
+We use storybook to build our components in isolation. This allows us to focus on the component while being abstracted from the main application.
+Storybook also helps us to document for our components in an interactive way.

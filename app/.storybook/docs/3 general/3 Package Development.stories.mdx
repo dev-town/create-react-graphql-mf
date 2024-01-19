@@ -1,0 +1,31 @@
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="Getting started / Package Development / Overview" />
+
+# Installing for package development.
+
+This package has 2 parts that need to be running at the same time:
+
+-   [Server](?path=/story/getting-started-install-for-development-server--page)
+-   [App](?path=/story/getting-started-install-for-development-app--page)
+
+# 1) App
+
+This is the component that will be added to the main application.
+The main libraries used are React and Apollo Client. Thse will be provided as a peer dependency to lower bundle sizes.
+
+By default this boilerplate ships with Styled Components, but replacing this is fairly easy process.
+In future updates to the boilerplate, I will be providing options to pick different styling options (i.e. emotion, tailwind)
+
+> There is a basic theme defined in ```.storybook/theme.tsx```, and it is advised you replace this with your own imported theme.
+
+
+# 2) Server
+
+This is an Apollo Federated Server. It allows us to generate our typings, mock data, and test implementation locally.
+These federated services can be deployed to an environment as part of CI to save running multiple api's locally.
+
+A Gateway can be run locally to allow for swapping out different federated servers when actively developing.
+
+
+**Remember to re-start the gateway when making changes to the schema**

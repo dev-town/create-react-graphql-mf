@@ -1,0 +1,31 @@
+import { gql } from 'graphql-tag';
+import { IResolvers } from '../../types/graphql-generated';
+import { repo } from './repo';
+
+export const typeDefs = gql`
+    type {{pascalCase moduleName}} {
+        id: ID!
+        value: String!
+    }
+
+    extend type Query {
+        get{{pascalCase moduleName}}: [{{pascalCase moduleName}}!]!
+    }
+
+    input {{pascalCase moduleName}}Input {
+        value: String!
+    }
+
+    extend type Mutation {
+        create{{pascalCase moduleName}}(input: {{pascalCase moduleName}}Input!): {{pascalCase moduleName}}!
+    }
+`;
+
+export const resolvers: IResolvers = {
+    Query: {
+        get{{pascalCase moduleName}}: () => repo.getAll(),
+    },
+    Mutation: {
+        create{{pascalCase moduleName}}: (_, { input }) => repo.create(input),
+    },
+};

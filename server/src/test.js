@@ -1,0 +1,2 @@
+import httpTrigger from './server';
+

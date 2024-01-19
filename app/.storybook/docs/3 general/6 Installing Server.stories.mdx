@@ -1,0 +1,72 @@
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="Getting started / Package Development / Server Install" />
+
+# 1) Install Server:
+
+To install the server, run the following command within the server folder.
+
+```
+> cd server
+> npm install
+```
+
+# 2) Running the server
+
+To start the server, run the following command within the server folder.
+
+```
+> cd server
+>  npm start
+```
+
+# 3) Run the gateway
+
+To ensure data from other federated endpoints can be resolved, we must start the mock gateway alongside any of these services being actively developed.
+
+> By default the gateway will run against the hosted dev environment's services. You only need to run this packages server if you are updating the schemas / resolvers.
+
+
+
+## Server development
+
+The server is a federated GraphQL server with typescript codegen baked in.
+Each modules has a schema, resolvers, and repo.
+When creating a new module, make sure to add it to the modules/index.ts. (or use npm run scaffold)
+
+### Inside a module
+index.ts: barrel for export (typically ignore this file)
+graphql.ts: Schemas and resolvers for this module
+repo.ts: The mock data / fake API requests etc, can live in here.
+
+### Codegen
+
+After updating the schema (either by creating a new module, or updating an existing one), you will want to run the codegen to auto generate the typings.
+This can be done with:
+
+```
+> npm run codegen
+```
+
+> As we use a Apollo federation, it is important to restart the mock gateway after making any schema changes.
+
+> _If it is just repo / mock changes, there is no need to restart the mock gateway._
+
+### Models
+
+Sometimes when creating the services, it is best to use a model for the data.
+This allows you to transform data from the model shape to the GraphQL shape.
+A good example is when you only have an id for a relationship but need to return back a full graphql shape.
+This can be done by adding a Mapper in the codegen.yml file:
+
+e.g.
+
+```
+mappers:
+    Post: ../models/posts#Post
+```
+
+this would map a type of 'Post' to a interface called 'Post' inside models/posts.ts
+_The contents after the hash refer to the interface name_
+
+For more info on models see this [blog post](https://the-guild.dev/blog/better-type-safety-for-resolvers-with-graphql-codegen)

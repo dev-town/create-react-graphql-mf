@@ -1,0 +1,31 @@
+/* eslint-disable react/jsx-props-no-spreading */
+import React from 'react';
+import { StoryObj, Meta } from '@storybook/react'
+
+import { {{pascalCase componentName}} } from '../index';
+
+export default {
+    title: 'Components/{{pascalCase componentName}}',
+    component: {{pascalCase componentName}},
+    args: {
+        children: '{{pascalCase componentName}}',
+    },
+    parameters: {
+        docs: {
+            description: {
+                component: 'Please replace this default description',
+            },
+        },
+    },
+} as Meta;
+
+const Template: StoryObj<typeof {{pascalCase componentName}}> = {
+    render: (args) => {
+        return <{{pascalCase componentName}} {...args} />
+    }
+};
+
+export const Primary = {
+    ...Template,
+    args: {},
+}

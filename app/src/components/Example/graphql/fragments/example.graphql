@@ -1,0 +1,5 @@
+fragment MyExample on Example {
+    id
+    title
+    content
+}

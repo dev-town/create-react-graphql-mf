@@ -1,0 +1,24 @@
+/* eslint-disable react/jsx-props-no-spreading */
+import React from 'react';
+import { screen } from '@testing-library/react';
+
+import { renderWithProviders } from '../../../../testHelpers';
+import { {{pascalCase componentName}} } from '../index';
+
+const setup = (additionalProps = {}) => {
+    const utils = renderWithProviders(<{{pascalCase componentName}} {...additionalProps}>{{pascalCase componentName}}</{{pascalCase componentName}}>);
+    return {
+        ...utils,
+    };
+};
+
+it('renders component', () => {
+    setup();
+    expect(screen.getByText('Your new component!'));
+    expect(screen.getByText('{{pascalCase componentName}}'));
+});
+
+it('has data-testid', () => {  
+    setup();
+    expect(screen).hasDevTownTestId('{{kebabCase componentName}}');
+});

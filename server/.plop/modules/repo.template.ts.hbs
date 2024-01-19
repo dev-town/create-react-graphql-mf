@@ -1,0 +1,30 @@
+import { I{{pascalCase moduleName}}, I{{pascalCase moduleName}}Input } from '../../types/graphql-generated';
+
+class Repo {
+    private content: Map<string, I{{pascalCase moduleName}}>;
+
+    constructor() {
+        this.content = new Map([['1', { id: '1', value: 'Item 1' }]]);
+    }
+
+    getAll(): I{{pascalCase moduleName}}[] {
+        return [...this.content].map(item => item[1]);
+    }
+
+    getById(id: string): I{{pascalCase moduleName}} | undefined {
+        return this.content.get(id);
+    }
+
+    create(input: I{{pascalCase moduleName}}Input) {
+        const newItem = {
+            id: `${+new Date()}`,
+            ...input,
+        };
+
+        this.content.set(newItem.id, newItem)
+
+        return newItem;
+    }
+}
+
+export const repo = new Repo();

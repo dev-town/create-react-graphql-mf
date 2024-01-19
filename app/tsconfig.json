@@ -1,0 +1,24 @@
+{
+    "compilerOptions": {
+        "declaration": true,
+        "declarationDir": "./types",
+        "sourceMap": true,
+        "target": "es5",
+        "lib": ["dom", "dom.iterable", "esnext"],
+        "allowJs": true,
+        "skipLibCheck": true,
+        "esModuleInterop": true,
+        "allowSyntheticDefaultImports": true,
+        "strict": true,
+        "forceConsistentCasingInFileNames": true,
+        "module": "esnext",
+        "moduleResolution": "node",
+        "resolveJsonModule": true,
+        "isolatedModules": false, // turn this off for tests with no import
+        "noEmit": true,
+        "jsx": "react",
+        "downlevelIteration": true
+    },
+    "include": ["./src/**/*"],
+    "exclude": ["node_modules", "build", "src/**/*.stories.tsx", "src/**/__stories__/*"]
+}

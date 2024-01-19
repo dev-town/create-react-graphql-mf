@@ -1,0 +1,20 @@
+import React from 'react';
+import * as SC from './{{pascalCase componentName}}.styled';
+import { TestIdProp, generate } from '../../../helpers/testId';
+import { useTranslation, module } from '../../../helpers/trans';
+
+export interface {{pascalCase  componentName }}Props extends TestIdProp {
+    className?: string;
+}
+
+export const {{pascalCase  componentName }}: React.FC<{{pascalCase  componentName }}Props> = (props) => {
+    const { className, children } = props;
+    const { t } = useTranslation([module]);
+
+    return (
+        <SC.{{pascalCase componentName}} data-testid={generate(['{{kebabCase componentName}}'], props)} className={className}>
+            <h1>{t('scaffold.component', 'Your new component!')}</h1>
+            {children}
+        </SC.{{pascalCase componentName}}>
+    );
+};

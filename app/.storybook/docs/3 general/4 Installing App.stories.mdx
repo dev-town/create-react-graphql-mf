@@ -1,0 +1,39 @@
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="Getting started / Package Development / App Install" />
+
+# 1) Install App:
+
+```
+> cd app
+> npm install
+```
+
+# 2) Running the storybook
+
+Run the storybook by running the below:
+
+```
+> cd app
+>  npm start
+```
+
+# 3) Component generation
+
+We have introduced "Plop" to help with scaffoling out new components within our packages.
+
+```
+> npm run scaffold
+? Name this component FooBar
+? Do you need GraphQL? (Y/n)
+✔  ++ /src/components/FooBar/index.ts
+✔  ++ /src/components/FooBar/__stories__/FooBar.stories.tsx
+✔  ++ /src/components/FooBar/components/FooBar.styled.tsx
+✔  ++ /src/components/FooBar/components/FooBar.tsx
+✔  ++ /src/components/FooBar/__tests__/FooBar.test.tsx
+✔  ++ /src/components/FooBar/graphql/queries/example.graphql
+✔  ++ /src/components/FooBar/graphql/fragments/example.graphql
+✔  ++ /src/components/FooBar/graphql/mutations/example.graphql
+```
+
+> You can include GraphQL to auto generate some example queries, fragments, and mutations

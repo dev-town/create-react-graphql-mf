@@ -1,0 +1,36 @@
+import { I{{pascalCase moduleName}}Input } from '../../types/graphql-generated';
+
+import { {{pascalCase moduleName}} } from '../../models/{{pascalCase moduleName}}';
+
+class Repo {
+    private content: Map<string, {{pascalCase moduleName}}>;
+
+    constructor() {
+        this.content = new Map([['1', { id: '1' }]]);
+    }
+
+    getAll(): {{pascalCase moduleName}}[] {
+        return [...this.content].map(item => item[1]);
+    }
+
+    getById(id: string): {{pascalCase moduleName}} | undefined {
+        return this.content.get(id);
+    }
+
+    getValue(id: string) {
+        return `Item - ${id}`;
+    }
+
+    create(input: I{{pascalCase moduleName}}Input) {
+        const newItem = {
+            id: `${+new Date()}`,
+            ...input,
+        };
+
+        this.content.set(newItem.id, newItem)
+
+        return newItem;
+    }
+}
+
+export const repo = new Repo();
