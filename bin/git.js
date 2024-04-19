@@ -3,7 +3,7 @@ const path = require('path');
 const fs = require('fs-extra');
 const kebabCase = require('kebab-case');
 
-const gitRepo = 'git@github.com:dev-town/create-react-graphql-mf.git';
+const gitRepo = 'https://github.com/dev-town/create-react-graphql-mf.git';
 
 const updatePackageJsonName = (packageName, file) => {
     let content = fs.readFileSync(file);
